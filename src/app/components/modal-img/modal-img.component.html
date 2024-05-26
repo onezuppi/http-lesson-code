@@ -1,0 +1,39 @@
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+    <div>
+        <img [src]="img.url" alt="картинка" height="300">
+    </div>
+    <ng-container *ngIf="!isLoading(); else loading">
+        <ng-container *ngIf="image() === null; else imageTemplate">
+            <div [formGroup]="form" style="display: grid; gap: 8px;">
+                <tui-textarea formControlName="prompt">
+                    Prompt
+                </tui-textarea>
+                <tui-textarea formControlName="negativePrompt">
+                    NegativePrompt
+                </tui-textarea>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px">
+                    <tui-input-number formControlName="width"></tui-input-number>
+                    <tui-input-number formControlName="height"></tui-input-number>
+                </div>
+                <tui-input-number formControlName="steps"></tui-input-number>
+                <button tuiButton (click)="genImage()">
+                    Сгенерировать
+                </button>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>
+
+<ng-template #loading>
+    loading
+</ng-template>
+
+
+<ng-template #imageTemplate>
+    <div>
+        {{ image()?.progress | percent }}
+        @if (image()?.current_image) {
+            <img [src]="image()?.current_image" alt="dfd" height="300">
+        }
+    </div>
+</ng-template>

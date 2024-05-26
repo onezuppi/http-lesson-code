@@ -1,0 +1,19 @@
+<div *ngIf="image()">
+    <img [src]="image()" alt="" >
+</div>
+
+<div class="grid-wrapper">
+    @for (img of images$(); track img.url; let i = $index){
+        <div class="grid-item" [img]="img" (click)="openImg.emit(img)">
+            <img [src]="img.url" alt="" >
+        </div>
+    }
+    <div appVisibilityEmitter (isVisible)="$event && load()">
+    </div>
+    <div>
+        {{ isLoading() ? 'Загрузка' : 'Загрузить еще' }}
+    </div>
+<!--     <button tuiButton (click)="!isLoading() && load()"> -->
+<!--         -->
+<!--     </button> -->
+</div>
