@@ -14,6 +14,7 @@ import { GalleryModule } from './modules/galery/gallery.module';
 import { ModalImgComponent } from './components/modal-img/modal-img.component';
 import { TuiInputNumberModule, TuiTextareaModule } from '@taiga-ui/kit';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ImageService } from './services/live-image.service';
 
 @NgModule({
 	declarations: [
@@ -39,7 +40,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 		{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
 		{ provide: HTTP_INTERCEPTORS, multi: true, useClass: LoggerService  },
 		{ provide: LOGGER_TOKEN , multi: true, useValue: console.log },
-		CivitImageService
+		CivitImageService,
+		ImageService
 	],
 	bootstrap: [AppComponent]
 })

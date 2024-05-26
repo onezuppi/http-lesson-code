@@ -5,6 +5,7 @@ import { ImageModel } from '../../services/models/get-civit-images.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IProgressResponseModel, Sd3ImageService, SDImagesRequestModel } from '../../services/sd3-image.service';
 import { combineLatest, interval, map, merge, Observable, startWith, switchMap, take, tap } from 'rxjs';
+import { ImageService } from '../../services/live-image.service';
 
 const mergeUntilAnyComplete: typeof merge = (...args: Observable<unknown>[]) => {
 	return new Observable(s => {
@@ -43,7 +44,8 @@ export class ModalImgComponent {
 
     constructor(
 		@Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<ImageModel, ImageModel>,
-		private readonly _sdService: Sd3ImageService
+		private readonly _sdService: Sd3ImageService,
+		private readonly _imageService: ImageService
 	) {
 	}
 
@@ -67,5 +69,13 @@ export class ModalImgComponent {
                 this.isLoading.update(() => false);
 //				res.progress === 1 && sub.unsubscribe();
 			});
+	}
+
+	public add(img: string): void {
+		this._imageService.addImage({
+			origin: this.img,
+			data: this.form.getRawValue() as any,
+			image: img
+		});
 	}
 }

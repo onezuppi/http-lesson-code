@@ -1,0 +1,7 @@
+<div style="display: flex; gap: 10px">
+    <ng-container *ngFor="let image of images$ | async">
+        <div (click)="open(image)" >
+            <img [src]="image.image" width="100" />
+        </div>
+    </ng-container>
+</div>

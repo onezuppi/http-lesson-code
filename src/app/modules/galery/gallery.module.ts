@@ -6,12 +6,14 @@ import { TuiButtonModule } from '@taiga-ui/core';
 import { VisibilityEmitterDirective } from '../../standalone/intersection.directive';
 import { Sd3ImageService } from '../../services/sd3-image.service';
 import { OpenImgDirective } from './directives/open-img.directive';
+import { LiveImagesComponent } from './components/live-images/live-images.component';
 
 
 const components: any[] = [
 	GalleryComponent,
 	SizeDirective,
-	OpenImgDirective
+	OpenImgDirective,
+	LiveImagesComponent
 ];
 
 @NgModule({

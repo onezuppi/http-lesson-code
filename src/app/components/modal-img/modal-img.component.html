@@ -35,5 +35,9 @@
         @if (image()?.current_image) {
             <img [src]="image()?.current_image" alt="dfd" height="300">
         }
+        <button *ngIf="image()?.progress === 1"
+                tuiButton (click)="add(image()?.current_image!)">
+            Поделиться
+        </button>
     </div>
 </ng-template>
